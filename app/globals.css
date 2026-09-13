@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-montserrat);
+
+  /* The three sacred brand tokens */
+  --color-brand-cream: #f5f2ed;
+  --color-brand-ink: #1a1a1a;
+  --color-brand-gold: #c5a059;
+
+  /* Tonal extensions of the same family (no new hues) */
+  --color-brand-sand: #e9e2d6;
+  --color-brand-stone: #8a8074;
+  --color-brand-charcoal: #14130f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-brand-cream text-brand-ink font-sans antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-gold);
+    color: #fff;
+  }
+
+  /* Refined, brand-tinted scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-brand-cream);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cfc6b6;
+    border: 3px solid var(--color-brand-cream);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-gold);
+  }
+}
+
+@layer components {
+  /* Tiny uppercase wide-tracked label — the brand's signature micro-type */
+  .eyebrow {
+    @apply font-sans uppercase font-semibold;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  /* Subtle paper grain for depth on solid backgrounds */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- Arabic / RTL ---------- */
+[dir="rtl"] {
+  /* swap the serif/sans tokens to elegant Arabic faces */
+  --font-serif: var(--font-elmessiri);
+  --font-sans: var(--font-cairo);
+}
+
+/* letter-spacing breaks Arabic letter shaping — neutralise it in RTL */
+[dir="rtl"] * {
+  letter-spacing: normal !important;
+}
+
+/* Arabic has no italic; avoid synthetic slanting */
+[dir="rtl"] .italic {
+  font-style: normal;
+}
+
+/* keep the eyebrow micro-label readable in Arabic (no caps transform needed) */
+[dir="rtl"] .eyebrow {
+  letter-spacing: normal;
+  text-transform: none;
+}
+

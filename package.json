@@ -1,0 +1,42 @@
+{
+  "name": "jabal-dreams",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "clean": "npm cache clean --force && node -e \"const fs=require('fs');['.next','node_modules'].forEach((d)=>fs.rmSync(d,{recursive:true,force:true})); console.log('Removed .next and node_modules; npm cache cleaned.');\""
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "lucide-react": "^1.7.0",
+    "motion": "^12.38.0",
+    "next": "16.2.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-icons": "^5.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "@tailwindcss/postcss": {
+      "postcss": "8.5.15"
+    },
+    "minimatch@10.2.5": {
+      "brace-expansion": "5.0.6"
+    },
+    "next": {
+      "postcss": "8.5.15"
+    }
+  }
+}
